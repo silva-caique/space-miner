@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SPACE MINER</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/menu.css">
+<link rel="stylesheet" href="css/hud.css">
+<link rel="stylesheet" href="css/inventory.css">
+<script src="https://sdk.crazygames.com/crazygames-sdk-v3.js"></script>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="loading">
+  <div class="load-box">
+    <h1>SPACE<b>MINER</b></h1>
+    <p id="load-step">Iniciando...</p>
+    <div class="load-bar"><i id="load-fill"></i></div>
+    <div class="load-meta"><span>CARREGANDO...</span><span id="load-pct">0%</span></div>
+    <div id="load-error" class="hidden"></div>
+  </div>
+</div>
+<div id="adshield" class="hidden"><div class="box"><b>📺 ANÚNCIO (teste local)</b><p>No CrazyGames, aqui aparece um vídeo de anúncio.<br>Recompensa em <span id="adcount">3</span>s...</p></div></div>
+
+<div id="fade"></div>
+
+<div id="hud" class="hidden">
+  <div class="hud-tl">
+    <div class="bar hp"><i id="hp-fill"></i><span id="hp-text"></span></div>
+    <div class="bar en"><i id="en-fill"></i><span id="en-text"></span></div>
+  </div>
+  <div class="hud-tr">
+    <div class="chip" id="credits">💰 0</div>
+    <div class="chip"><span id="lvl">⭐ Nv 1</span><div class="xp"><i id="xp-fill"></i></div></div>
+  </div>
+  <div class="hud-bl">
+    <div class="chip" id="bag">🎒 0/20</div>
+    <div class="chip" id="depth">📍 Superfície</div>
+    <div class="chip" id="recall">🌀 R pronto</div>
+    <div class="chip" id="scan">📡 Q pronto</div>
+    <div class="chip" id="petchip">🤖 Bolt Nv 1</div>
+    <div class="chip hidden" id="turbo"></div>
+  </div>
+  <div id="quest"></div>
+  <div id="mine-wrap" class="hidden"><div id="mine-name"></div><div class="mbar"><i id="mine-fill"></i></div></div>
+  <div id="prompt" class="hidden"></div>
+  <canvas id="minimap" width="180" height="180"></canvas>
+  <div id="boss" class="hidden"><div class="bn">👑 Guardião do Núcleo</div><div class="mbar big"><i id="boss-fill"></i></div></div>
+  <div id="recall-wrap" class="hidden"><div>🌀 Retornando à nave... (não tome dano)</div><div class="mbar"><i id="recall-fill"></i></div></div>
+  <div id="combo" class="hidden"><div class="cl">COMBO</div><div class="cn" id="combo-n">0</div><div class="cm" id="combo-m">x1</div><div class="mbar"><i id="combo-fill"></i></div></div>
+  <div id="crosshair"><i class="t"></i><i class="b"></i><i class="l"></i><i class="r"></i><u></u></div>
+  <div id="hitmarker"><i></i><i></i><i></i><i></i></div>
+  <div id="dmgnums"></div>
+  <div id="lockhint" class="hidden">🖱️ Clique na tela para capturar o mouse e mirar</div>
+  <div id="wslots"></div>
+  <div id="abil">
+    <div class="ab" id="ab-w"><kbd>🖱️</kbd><span>🔫</span><i></i><small>Blaster</small></div>
+    <div class="ab" id="ab-v"><kbd>V</kbd><span>🛡️</span><i></i><small>Escudo</small></div>
+    <div class="ab" id="ab-z"><kbd>Z</kbd><span>💨</span><i></i><small>Esquiva</small></div>
+    <div class="ab" id="ab-f"><kbd>F</kbd><span>💥</span><i></i><small>Pulso</small></div>
+  </div>
+  <div id="flash"></div>
+  <div class="keys">WASD mover · Shift correr · Botão esquerdo atirar · Botão direito/Espaço minerar · 1-6 armas · E interagir · V escudo · Z esquiva · F pulso · Q scanner · R retorno (segure) · P mascote · I mochila · C codex · Botão dir. girar câmera · Esc pausa</div>
+  <div id="threat"></div>
+  <div id="dmg"></div>
+</div>
+
+<div id="menu">
+  <div class="menu-vignette"></div>
+  <section class="menu-left">
+    <header class="logo">
+      <span class="tag">EXPEDIÇÃO ESPACIAL · MARS</span>
+      <h1>SPACE<b>MINER</b></h1>
+      <p>Minere. Venda. Melhore. Só mais uma mineração…</p>
+    </header>
+    <nav class="menu-nav" id="menu-nav">
+      <button class="nav-btn primary sel" data-act="play"><i>▶</i><span><b id="play-label">JOGAR</b><small>Volte à superfície de Mars</small></span><kbd>Enter</kbd></button>
+      <button class="nav-btn" data-act="ship"><i>🚀</i><span><b>NAVE</b><small>Venda recursos e veja destinos</small></span><kbd>1</kbd></button>
+      <button class="nav-btn" data-act="equip"><i>⛏️</i><span><b>MELHORIAS</b><small>Broca, blaster, escudo, mochila, scanner</small></span><kbd>2</kbd></button>
+      <button class="nav-btn" data-act="pet"><i>🤖</i><span><b>MASCOTE</b><small>Evolua o Bolt e libere habilidades</small></span><kbd>3</kbd></button>
+      <button class="nav-btn" data-act="codex"><i>📖</i><span><b>COLEÇÃO</b><small>Descobertas, missões e conquistas</small></span><kbd>4</kbd></button>
+      <button class="nav-btn" data-act="settings"><i>⚙️</i><span><b>CONFIGURAÇÕES</b><small>Áudio, gráficos e novo jogo</small></span><kbd>5</kbd></button>
+    </nav>
+    <footer class="menu-foot">v2.0 · Esc pausa o jogo · Progresso salvo automaticamente</footer>
+  </section>
+  <aside class="menu-right">
+    <div class="glass profile"><div class="ring" id="m-ring"><span id="m-lvl">1</span></div><div class="pi"><b id="m-name">Minerador</b><small id="m-xp"></small><div class="money" id="m-credits"></div></div></div>
+    <div class="glass tiles">
+      <div><small>MOCHILA</small><b id="m-bag"></b></div><div><small>PROFUNDIDADE MÁX.</small><b id="m-depth"></b></div>
+      <div><small>CONQUISTAS</small><b id="m-ach"></b></div><div><small>MELHOR COMBO</small><b id="m-combo"></b></div>
+    </div>
+    <div class="glass petcard"><span class="pe" id="m-pet-ico">🤖</span><div class="pi"><b id="m-pet-name"></b><small id="m-pet-sub"></small><div class="mb"><i id="m-pet-xp"></i></div></div></div>
+    <div class="glass tip"><small>DICA</small><p id="m-tip"></p></div>
+  </aside>
+</div>
+
+<div id="panel" class="hidden">
+  <div class="panel-box">
+    <div class="panel-head"><h2 id="panel-title"></h2><button id="panel-close" class="btn small">✕</button></div>
+    <div id="panel-tabs"></div>
+    <div id="panel-body"></div>
+  </div>
+</div>
+
+<div id="debug" class="hidden"></div>
+<div id="toasts"></div>
+<div id="banner"></div>
+<div id="error" class="hidden"></div>
+
+<noscript>Ative o JavaScript para jogar.</noscript>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

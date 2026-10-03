@@ -1,0 +1,14 @@
+{
+  "name": "space-miner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "SPACE MINER - jogo 3D de mineração espacial para navegador (CrazyGames)",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "node tools/build.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}

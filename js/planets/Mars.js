@@ -1,0 +1,11 @@
+SM.Mars = new SM.Planet({
+  id: 'mars', name: 'Mars', seed: 3,
+  layers: [
+    { name: 'Superfície', ground: 0xf0a92a, ground2: 0xffd45c, rock: 0xd8562b, rock2: 0x9aa0b4, accent: 0xff6ad5, sky: 0x060b30, horizon: 0x2c4fb0, fog: 0x2c4fb0, nebula: true, fogNear: 70, fogFar: 200, light: 1.15, hemi: [0xffe6b0, 0x8a4a30], enemies: [{ t: 'slime', n: 6 }, { t: 'crab', n: 2 }], hazards: ['meteor', 'storm'] },
+    { name: 'Camada 1', ground: 0xe0862a, ground2: 0xffb050, rock: 0xc0452b, rock2: 0x8c8a9c, accent: 0xff8ad0, sky: 0x140a30, horizon: 0x5a2a6a, fog: 0x5a2a6a, nebula: true, fogNear: 45, fogFar: 170, light: 1.05, hemi: [0xffc090, 0x5a2a40], enemies: [{ t: 'slime', n: 4 }, { t: 'crab', n: 3 }, { t: 'bat', n: 3 }], hazards: [] },
+    { name: 'Camada 2', ground: 0x9a5fd0, ground2: 0xc98aff, rock: 0x6a3aa0, rock2: 0x8a80b0, accent: 0x8aff6a, sky: 0x120a26, horizon: 0x2a1450, fog: 0x2a1450, starry: false, fogNear: 35, fogFar: 150, light: 0.95, hemi: [0xd0b0ff, 0x3a2060], enemies: [{ t: 'slime', n: 2 }, { t: 'crab', n: 3 }, { t: 'rock', n: 3 }, { t: 'bat', n: 2 }, { t: 'spitter', n: 2 }], hazards: ['radiation'] },
+    { name: 'Camada 3', ground: 0x4f7fe0, ground2: 0x8fb8ff, rock: 0x35509a, rock2: 0x7a90b8, accent: 0x5ad8ff, sky: 0x08122a, horizon: 0x10285a, fog: 0x10285a, starry: false, fogNear: 30, fogFar: 135, light: 0.9, hemi: [0xa0c8ff, 0x1a2a60], enemies: [{ t: 'crab', n: 3 }, { t: 'rock', n: 4 }, { t: 'bat', n: 3 }, { t: 'spitter', n: 3 }], hazards: ['radiation'] },
+    { name: 'Cavernas Profundas', ground: 0x2fb59c, ground2: 0x7fffd0, rock: 0x1f6f6a, rock2: 0x4a8a90, accent: 0x5affd0, sky: 0x03161a, horizon: 0x052a30, fog: 0x052a30, starry: false, fogNear: 20, fogFar: 115, light: 0.8, hemi: [0x80ffe0, 0x0a3a40], enemies: [{ t: 'rock', n: 5 }, { t: 'bat', n: 4 }, { t: 'spitter', n: 3 }, { t: 'crab', n: 3 }], hazards: ['radiation'] },
+    { name: 'Núcleo', ground: 0xd8321a, ground2: 0xffa02a, rock: 0x6a1a10, rock2: 0x9a4a2a, accent: 0xffd02e, emissive: 0x661000, sky: 0x2a0500, horizon: 0x5a1000, fog: 0x5a1000, starry: false, fogNear: 25, fogFar: 120, light: 0.85, hemi: [0xffa070, 0x601400], enemies: [{ t: 'rock', n: 5 }, { t: 'spitter', n: 3 }, { t: 'bat', n: 3 }, { t: 'guardian', n: 1 }], hazards: ['radiation'] }
+  ]
+});

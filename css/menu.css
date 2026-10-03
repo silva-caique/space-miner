@@ -1,0 +1,34 @@
+/* Menu principal moderno: vidro fosco, navegação lateral, painel de perfil */
+#menu{position:fixed;inset:0;z-index:20;display:flex;justify-content:space-between;align-items:stretch;padding:4vh 5vw;gap:24px;
+  background:linear-gradient(90deg,rgba(6,8,26,.92) 0%,rgba(6,8,26,.55) 38%,rgba(6,8,26,.05) 62%,rgba(6,8,26,.5) 100%)}
+.menu-vignette{position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 180px 40px rgba(2,3,14,.75)}
+.menu-left,.menu-right{position:relative;display:flex;flex-direction:column;justify-content:center;gap:18px;animation:mrise .7s cubic-bezier(.2,.8,.2,1) both}
+.menu-left{width:min(430px,92vw)}.menu-right{width:min(320px,30vw);animation-delay:.12s}
+@keyframes mrise{from{opacity:0;transform:translateY(24px)}}
+.logo .tag{display:inline-block;font-size:.68rem;letter-spacing:.28em;color:var(--cyan);border:1px solid rgba(53,208,255,.4);border-radius:99px;padding:4px 12px;background:rgba(53,208,255,.08)}
+.logo h1{margin:12px 0 4px;font-size:clamp(2.6rem,7.2vw,4.8rem);line-height:.9;font-weight:900;letter-spacing:.04em;color:#fff;text-shadow:0 0 40px rgba(122,92,255,.55)}
+.logo h1 b{display:block;background:linear-gradient(90deg,#35d0ff,#7a5cff 55%,#ff6ad5);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 18px rgba(122,92,255,.5))}
+.logo p{margin:0;color:var(--muted);font-size:.95rem}
+.menu-nav{display:flex;flex-direction:column;gap:8px}
+.nav-btn{display:flex;align-items:center;gap:14px;text-align:left;font:inherit;color:var(--text);cursor:pointer;padding:11px 16px;border-radius:16px;
+  background:rgba(18,22,52,.55);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:transform .18s,border-color .18s,background .18s,box-shadow .18s}
+.nav-btn i{font-style:normal;font-size:1.35rem;width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:rgba(255,255,255,.07)}
+.nav-btn span{flex:1;display:flex;flex-direction:column}.nav-btn b{letter-spacing:.08em;font-size:.95rem}.nav-btn small{color:var(--muted);font-size:.72rem;margin-top:2px}
+.nav-btn kbd{font:600 .68rem/1 inherit;color:var(--muted);border:1px solid rgba(255,255,255,.2);border-radius:6px;padding:4px 7px;background:rgba(0,0,0,.25)}
+.nav-btn.sel,.nav-btn:hover{transform:translateX(8px);border-color:rgba(53,208,255,.65);background:rgba(28,40,96,.7);box-shadow:0 0 0 1px rgba(53,208,255,.25),0 10px 30px rgba(53,208,255,.15)}
+.nav-btn.primary{padding:15px 18px;background:linear-gradient(120deg,rgba(53,208,255,.28),rgba(122,92,255,.4) 60%,rgba(255,106,213,.32));border-color:rgba(255,255,255,.35)}
+.nav-btn.primary i{background:linear-gradient(135deg,#35d0ff,#7a5cff);box-shadow:0 0 22px rgba(53,208,255,.55);font-size:1.15rem}
+.nav-btn.primary b{font-size:1.15rem}
+.menu-foot{color:rgba(255,255,255,.4);font-size:.72rem}
+.glass{background:rgba(18,22,52,.55);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:14px 16px;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.menu-right .pi{display:flex;flex-direction:column;gap:3px;flex:1}.menu-right small{color:var(--muted);font-size:.68rem;letter-spacing:.06em}
+.profile,.petcard{display:flex;align-items:center;gap:14px}
+.ring{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;position:relative;flex:none}
+.ring::before{content:'';position:absolute;inset:6px;border-radius:50%;background:#0d1130}
+.ring span{position:relative;font-weight:900;font-size:1.35rem}
+.money{color:var(--gold);font-weight:800;font-size:1.25rem}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}.tiles div{display:flex;flex-direction:column;gap:2px}.tiles b{font-size:.98rem}
+.pe{font-size:2rem;width:52px;height:52px;display:grid;place-items:center;border-radius:14px;background:rgba(255,255,255,.07);flex:none}
+.tip p{margin:4px 0 0;font-size:.85rem;line-height:1.4;color:#d5dcff;min-height:2.4em}
+@media(max-width:900px){.menu-right{display:none}#menu{padding:3vh 4vw}}
+@media(max-width:600px){#menu{justify-content:center}.nav-btn small{display:none}.nav-btn kbd{display:none}}
