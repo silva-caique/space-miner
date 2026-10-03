@@ -32,3 +32,8 @@
 .tip p{margin:4px 0 0;font-size:.85rem;line-height:1.4;color:#d5dcff;min-height:2.4em}
 @media(max-width:900px){.menu-right{display:none}#menu{padding:3vh 4vw}}
 @media(max-width:600px){#menu{justify-content:center}.nav-btn small{display:none}.nav-btn kbd{display:none}}
+
+.banner{width:300px;height:250px;border-radius:12px;overflow:hidden;align-self:center}
+.banner.dev{display:grid;place-items:center;border:2px dashed rgba(255,255,255,.35);color:#9fe8ff;font-size:.8rem;text-align:center}
+#banner-go{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);width:728px;height:90px;z-index:60}
+@media(max-height:900px){.menu-right .tip{display:none}}

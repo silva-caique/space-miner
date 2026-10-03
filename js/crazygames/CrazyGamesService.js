@@ -39,5 +39,7 @@ export class CrazyGamesService {
       } catch (e) { done({ ok: false, reason: 'exception' }); }
     });
   }
+  requestBanner(id, width, height) { if (this.available && this.sdk.banner) this.safe(() => this.sdk.banner.requestBanner({ id, width, height })); }
+  clearAllBanners() { if (this.available && this.sdk.banner) this.safe(() => this.sdk.banner.clearAllBanners()); }
   get data() { return this.available && this.sdk.data ? this.sdk.data : null; }
 }

@@ -142,10 +142,11 @@ export class Game {
   // ---------- estados ----------
   onState(s) {
     if (s !== States.GAMEPLAY) this.input.unlock();
-    if (s === States.MENU) { this.ui.closeAll(); this.hud.hide(); this.menu.show(); this.saves.flush(true); }
+    if (s !== States.MENU && s !== States.GAME_OVER) this.ads.hideBanners();
+    if (s === States.MENU) { this.ui.closeAll(); this.hud.hide(); this.menu.show(); this.saves.flush(true); this.ads.showBanner('menu'); }
     else if (s === States.GAMEPLAY) { this.menu.hide(); this.hud.show(); }
     else if (s === States.PAUSED) { this.ui.open(this.pauseUI); this.saves.flush(true); }
-    else if (s === States.GAME_OVER) { this.hud.hide(); this.ui.open(this.gameOverUI); }
+    else if (s === States.GAME_OVER) { this.hud.hide(); this.ui.open(this.gameOverUI); this.ads.showBanner('gameover'); }
   }
   start() {
     if (!this.fsm.is(States.MENU)) return;
@@ -223,8 +224,9 @@ export class Game {
     if (this.fsm.is(States.GAMEPLAY)) { this.missions.notify('depth', i); const nv = this.resources.veins.length; if (nv) this.ui.toast(`💎 ${nv} veio${nv > 1 ? 's' : ''} rico${nv > 1 ? 's' : ''} nesta camada. Procure a estrela dourada no minimapa!`, 'discover'); }
     this.state.stats.maxDepth = Math.max(this.state.stats.maxDepth, i);
   }
-  changeLayer(d) {
+  async changeLayer(d) {
     if (this.busy) return; this.busy = true;
+    if (this.enemies.threat < 0.05) await this.ads.interstitial('camada');
     const f = document.getElementById('fade'); f.classList.add('on');
     setTimeout(() => { this.loadLayer(this.layer + d, d > 0 ? 'down' : 'up'); f.classList.remove('on'); this.busy = false; this.audio.play('pulse'); this.save(); }, 380);
   }
